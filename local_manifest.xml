@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="NewbyJE/android" path="android" remote="github" revision="cm10-mbm" />
+  <project name="NewbyJE/hp-kernel-tenderloin" path="kernel/hp/tenderloin" remote="github" revision="ics" />
+  <project name="NewbyJE/android_device_hp_tenderloin" path="device/hp/tenderloin" remote="github" revision="jellybean" />
+  <project name="NewbyJE/vendor_mbm" path="vendor/mbm" remote="github" revision="master" />
+  <project name="NewbyJE/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="jellybean" />
+  <project name="jcsullins/backports-3.10-2" path="external/backports-wireless" remote="github" revision="master"/>
+</manifest>

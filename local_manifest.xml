@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="NewbyJE/android" path="android" remote="github" revision="cm10-mbm" />
+  <project name="NewbyJE/android" path="patches" remote="github" revision="cm10-mbm" />
   <project name="NewbyJE/hp-kernel-tenderloin" path="kernel/hp/tenderloin" remote="github" revision="ics" />
   <project name="NewbyJE/android_device_hp_tenderloin" path="device/hp/tenderloin" remote="github" revision="jellybean" />
   <project name="NewbyJE/vendor_mbm" path="vendor/mbm" remote="github" revision="master" />

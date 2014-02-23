@@ -1,3 +1,94 @@
-android
-###############################################################################
-Please go to the branch that you wish to setup and build.
+Overview - Jellybean Version (CM10-mbm)
+################################################################
+This version incorporates the SourceForge MBM HAL 4.0 BETA.  It
+has been modified specifically for the HP TouchPad 4G which uses
+ the Ericsson f5521gw Mobile Broadband Module (MBM).  
+ 
+ The modifications may be applicable to other platforms using 
+ Ericsson MBMs and running Android JB.  
+================================================================
+1. Features (in addition to current CyangenMod builds)
+================================================================
+Cellular radio support for the following standards
+----------------------------------------------------------------
+  Standard        Download    Upload     Symbol
+  ------------    --------    --------   ------
+  GSM/GPRS        0.0856      0.0428      "G"
+  EDGE Evol       1.8944      0.9472      "E"
+  WCDMA           0.384       0.384       "3G"
+  HSDPA           14.4        0.384       "H"
+  HSDPA+HSUPA     14.4        5.76        "H"
+  HSPA Evol       21          5.76        "H+"
+
+Data usage, tethering, and hotspot support
+----------------------------------------------------------------
+  Data Usage for mobile and Wi-Fi data
+  Bluetooth tethering
+  Portable Wi-Fi Hotspot
+
+Sensors
+----------------------------------------------------------------
+  Sensors work correctly in portrait mode builds
+  Sensors may not work correctly in landscape mode builds
+   (if the application only works in portrait mode)
+
+Email
+----------------------------------------------------------------
+  Email allows downloading zip and other compressed files
+  Email opens mail full screen in landscape mode
+
+Additional debugging support
+----------------------------------------------------------------
+  Increased Android log buffer sizes
+  aldtf.sh (in /system/xbin): Run from su prompt to create log files in 'sdcard/logs'
+  xmesg (in system/bin): Creates kernel logs similar to dmesg, but with time stamps
+  pollerr.sh (in system/bin): Capturese logs when a POLLERR occurs.  
+
+Acknowledgements
+----------------------------------------------------------------
+  James Sullins:  Everything, Prebuilds for CM10 audio & video,
+    power shutdow, sensors, updated WiFi drivers, etc. 
+  Tomasz Rostanski: Camera HAL, Gyroscope, etc. 
+  Hunter X: Testing and code input.  
+  MBM HAL Developers:  MBM HAL 4.0 Beta
+
+================================================================
+2. Build Instructions
+================================================================
+Create local repo and populate
+----------------------------------------------------------------
+mkdir -p ~/android/cm10-mbm
+cd ~/android/cm10-mbm 
+repo init -u git://github.com/CyanogenMod/android.git -b jellybean
+
+Add local manifest
+----------------------------------------------------------------
+Copy local_manifest.xml from here and place in:
+  ~/android/cm10-mbm/.repo/local_manifests/
+
+Sychronize the local repo (will take a while if first time)
+----------------------------------------------------------------
+repo sync -j16
+
+Use build script to build CM10 for the HP TouchPad 4G
+----------------------------------------------------------------
+Use the build script from here (cm10-mbm_build.sh)
+
+This will build my current build version:
+    cm-10-MBM_L-20140223-4g_beta5-tenderloin.zip
+
+Optional for Native Portrait Mode Build
+----------------------------------------------------------------
+Change build scrript for the portait patch:
+
+  echo "device_hp_tenderloin patches"
+  cd device/hp/tenderloin
+  # Change to portrait mode.
+  git apply $TOP/patches/patches/device_hp_tenderloin_portrait.patch
+  cd $TOP
+
+  echo "clean build and set name"
+  make clean
+  export CM_BUILDTYPE=MBM_P
+  export CM_EXTRAVERSION_DATESTAMP=1
+  export CM_EXTRAVERSION_TAG="4g_beta5"

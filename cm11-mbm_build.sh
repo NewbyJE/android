@@ -17,11 +17,6 @@ repo forall -c git reset --hard
 echo "repo sync"
 repo sync -j16
 #
-echo "remove old patches and files, check status"
-rm patches/patches/*
-rm -r patches/files/*
-repo status
-#
 echo "apply packages/apps/Bluetooth cherrypicks"
 pushd packages/apps/Bluetooth
 # btservice/AdaperState: handle ENABLED_READY in OffState (James Sullins)

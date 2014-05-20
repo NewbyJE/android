@@ -1,0 +1,48 @@
+diff --git a/wifi/wifi.c b/wifi/wifi.c
+index 5c8a11f..c2b2384 100644
+--- a/wifi/wifi.c
++++ b/wifi/wifi.c
+@@ -56,6 +56,7 @@ static int exit_sockets[2];
+ 
+ extern int do_dhcp();
+ extern int ifc_init();
++extern int ifc_up(const char *);
+ extern void ifc_close();
+ extern char *dhcp_lasterror();
+ extern void get_dhcp_info();
+@@ -110,7 +111,7 @@ static const char EXT_MODULE_PATH[] = WIFI_EXT_MODULE_PATH;
+ #endif
+ 
+ #ifndef WIFI_DRIVER_FW_PATH_PARAM
+-#define WIFI_DRIVER_FW_PATH_PARAM	"/sys/module/wlan/parameters/fwpath"
++#define WIFI_DRIVER_FW_PATH_PARAM		NULL
+ #endif
+ 
+ static const char IFACE_DIR[]           = "/data/system/wpa_supplicant";
+@@ -839,6 +840,17 @@ int wifi_start_supplicant(int p2p_supported)
+         serial = __system_property_serial(pi);
+     }
+ #endif
++
++#ifdef WIFI_DRIVER_MODULE_PATH
++    /* The ath6kl driver needs the interface up in order to scan! */
++    if (!strncmp(DRIVER_MODULE_NAME, "ath6kl", 6)) {
++        ALOGI("early wlan0 interface up for module: %s", DRIVER_MODULE_NAME);
++        ifc_init();
++        ifc_up("wlan0");
++        sleep(2);
++    }
++#endif
++
+     property_get("wifi.interface", primary_iface, WIFI_TEST_INTERFACE);
+ 
+     property_set("ctl.start", supplicant_name);
+@@ -1146,6 +1158,8 @@ int wifi_change_fw_path(const char *fwpath)
+     int fd;
+     int ret = 0;
+ 
++    if (WIFI_DRIVER_FW_PATH_PARAM == NULL)
++        return ret;
+     if (!fwpath)
+         return ret;
+     fd = TEMP_FAILURE_RETRY(open(WIFI_DRIVER_FW_PATH_PARAM, O_WRONLY));

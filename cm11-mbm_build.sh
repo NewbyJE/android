@@ -16,6 +16,7 @@ repo forall -c git reset --hard
 # repo forall -c git reset --hard HEAD
 echo "repo sync"
 repo sync -j16
+repo status
 #
 echo "apply packages/apps/Bluetooth cherrypicks"
 pushd packages/apps/Bluetooth
@@ -38,6 +39,8 @@ cd $TOP
 #
 echo "apply vendor cm patch"
 cd vendor/cm
+# Allow non-release builds
+git apply $TOP/patches/patches/vendor_cm.patch
 ./get-prebuilts
 cd $TOP
 #

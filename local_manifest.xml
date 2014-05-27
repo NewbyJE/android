@@ -6,5 +6,4 @@
   <project name="invisiblek/proprietary_vendor_hp" path="vendor/hp" remote="github" />
   <project name="CyanogenMod/android_hardware_atheros_wlan" path="hardware/atheros/wlan" remote="github" revision="cm-11.0"/>
   <project name="NewbyJE/vendor_mbm" path="vendor/mbm" remote="github" revision="kk"/>
-  <project name="jcsullins/backports-3.10-2" path="external/backports-wireless" remote="github" revision="master"/>
 </manifest>

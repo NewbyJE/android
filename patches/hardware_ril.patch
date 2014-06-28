@@ -1,0 +1,107 @@
+diff --git a/rild/Android.mk b/rild/Android.mk
+index 1f616b1..49669cc 100644
+--- a/rild/Android.mk
++++ b/rild/Android.mk
+@@ -6,7 +6,6 @@ include $(CLEAR_VARS)
+ LOCAL_SRC_FILES:= \
+ 	rild.c
+ 
+-
+ LOCAL_SHARED_LIBRARIES := \
+ 	liblog \
+ 	libcutils \
+@@ -19,6 +18,11 @@ LOCAL_WHOLE_STATIC_LIBRARIES := \
+ 
+ LOCAL_CFLAGS := -DRIL_SHLIB
+ 
++# override global QCOM_HARDWARE if MBM RIL exists
++ifeq ($(strip $(BOARD_USES_MBM_RIL)),true)
++LOCAL_CFLAGS += -DBOARD_USES_MBM_RIL
++endif
++
+ LOCAL_MODULE:= rild
+ LOCAL_MODULE_TAGS := optional
+ 
+diff --git a/rild/rild.c b/rild/rild.c
+index 20fd3c7..ce86122 100644
+--- a/rild/rild.c
++++ b/rild/rild.c
+@@ -123,8 +123,8 @@ int main(int argc, char **argv)
+ 
+     int i;
+     const char *clientId = NULL;
+-    RLOGD("**RIL Daemon Started**");
+-    RLOGD("**RILd param count=%d**", argc);
++    RLOGD("RIL Daemon Started");
++    RLOGD("RILd param count=%d", argc);
+ 
+     umask(S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
+     for (i = 1; i < argc ;) {
+@@ -143,6 +143,7 @@ int main(int argc, char **argv)
+         }
+     }
+ 
++#ifndef BOARD_USES_MBM_RIL
+ #ifdef QCOM_HARDWARE
+     if (clientId == NULL) {
+         clientId = "0";
+@@ -157,7 +158,8 @@ int main(int argc, char **argv)
+             RLOGE("Trying to instantiate multiple rild sockets without a compatible libril!");
+         }
+     }
+-#endif
++#endif /* QCOM_HARDWARE */
++#endif /* BOARD_USES_MBM_RIL */
+ 
+     if (rilLibPath == NULL) {
+         if ( 0 == property_get(LIB_PATH_PROPERTY, libPath, NULL)) {
+@@ -169,6 +171,8 @@ int main(int argc, char **argv)
+         }
+     }
+ 
++    RLOGD("RILd libpath=%s", libPath);
++
+     /* special override when in the emulator */
+ #if 1
+     {
+@@ -242,6 +246,8 @@ int main(int argc, char **argv)
+             }
+         }
+ 
++        RLOGD("RILd Connected to %s socket: %s", QEMUD_SOCKET_NAME, strerror(errno));
++
+         /* otherwise, try to see if we passed a device name from the kernel */
+         if (!done) do {
+ #define  KERNEL_OPTION  "android.ril="
+@@ -305,17 +311,20 @@ OpenLib:
+         argc = make_argv(args, rilArgv);
+     }
+ 
++#ifndef BOARD_USES_MBM_RIL
+ #ifdef QCOM_HARDWARE
+     rilArgv[argc++] = "-c";
+     rilArgv[argc++] = clientId;
+     RLOGD("RIL_Init argc = %d clientId = %s", argc, rilArgv[argc-1]);
+-#endif
++#endif /* QCOM_HARDWARE */
++#endif /* BOARD_USES_MBM_RIL */
+ 
+     // Make sure there's a reasonable argv[0]
+     rilArgv[0] = argv[0];
+ 
+     funcs = rilInit(&s_rilEnv, argc, rilArgv);
+ 
++#ifndef BOARD_USES_MBM_RIL
+ #ifdef QCOM_HARDWARE
+     if (funcs == NULL) {
+         /* Pre-multi-client qualcomm vendor libraries won't support "-c" either, so
+@@ -327,7 +336,8 @@ OpenLib:
+         RLOGE("============= and you're likely to have more radio breakage elsewhere!");
+         funcs = rilInit(&s_rilEnv, argc, rilArgv);
+     }
+-#endif
++#endif /* QCOM_HARDWARE */
++#endif /* BOARD_USES_MBM_RIL */
+ 
+     RIL_register(funcs);
+ 

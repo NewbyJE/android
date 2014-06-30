@@ -18,6 +18,13 @@ echo "repo sync"
 repo sync -j16
 repo status
 #
+echo "apply hardware/atheros/wlan cherrypicks"
+pushd hardware/atheros/wlan
+# sync driver_cmd_nl80211 to upstream (James Sullins)
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_hardware_atheros_wlan refs/changes/04/58704/1 && git cherry-pick -n FETCH_HEAD
+git reset HEAD
+popd
+#
 echo "apply packages/apps/Bluetooth cherrypicks"
 pushd packages/apps/Bluetooth
 # btservice/AdaperState: handle ENABLED_READY in OffState (James Sullins)
@@ -25,10 +32,10 @@ git fetch http://review.cyanogenmod.org/CyanogenMod/android_packages_apps_Blueto
 git reset HEAD
 popd
 #
-echo "hardware_libhardware_legacy patch"
-cd hardware/libhardware_legacy
-# Fix wlan0 loading and fw path directory.
-git apply $TOP/patches/patches/hardware_libhardware_legacy.patch
+echo "apply hardware/ril patch"
+cd hardware/ril
+# add BOARD_USES_MBM_RIL condition
+git apply $TOP/patches/patches/hardware_ril.patch
 cd $TOP
 #
 echo "system_core patch"
@@ -48,7 +55,7 @@ echo "clean build and set name"
 make clean
 export CM_BUILDTYPE=MBM_L
 export CM_EXTRAVERSION_DATESTAMP=1
-export CM_EXTRAVERSION_TAG="4g_beta5"
+export CM_EXTRAVERSION_TAG="4g_beta6"
 #
 echo "brunch tenderloin"
 brunch tenderloin 2>&1 | tee jb_build.log

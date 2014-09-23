@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="NewbyJE/android" path="patches" remote="github" revision="cm11-mbm" />
-  <project name="NewbyJE/android_kernel_hp_tenderloin" path="kernel/hp/tenderloin" remote="github" revision="cm-11.0"/>
-  <project name="NewbyJE/android_device_hp_tenderloin" path="device/hp/tenderloin" remote="github" revision="cm-11.0"/>
-  <project name="invisiblek/proprietary_vendor_hp" path="vendor/hp" remote="github" />
-  <project name="CyanogenMod/android_hardware_atheros_wlan" path="hardware/atheros/wlan" remote="github" revision="cm-11.0"/>
+  <project name="NewbyJE/android" path="patches" remote="github" revision="cm11-mbm_3.0" />
+  <project name="NewbyJE/android_kernel_samsung_msm8660-common" path="kernel/hp/tenderloin" remote="github" revision="tenderloin-cm-11.0-wip-5"/>
+  <project name="NewbyJE/android_device_hp_tenderloin" path="device/hp/tenderloin" remote="github" revision="cm-11.0_3.0"/>
   <project name="NewbyJE/vendor_mbm" path="vendor/mbm" remote="github" revision="kk"/>
+  <project name="TheMuppets/proprietary_vendor_hp" path="vendor/hp" remote="github" revision="cm-11.0"/>
+  <project name="CyanogenMod/android_hardware_atheros_wlan" path="hardware/atheros/wlan" remote="github" revision="cm-11.0"/>
+  <project name="jcsullins/backports-3.10-2" path="external/backports-wireless" remote="github" revision="master"/>
 </manifest>

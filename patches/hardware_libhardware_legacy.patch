@@ -1,5 +1,5 @@
 diff --git a/wifi/wifi.c b/wifi/wifi.c
-index 5c8a11f..c2b2384 100644
+index 80a0e2a..da576ea 100644
 --- a/wifi/wifi.c
 +++ b/wifi/wifi.c
 @@ -56,6 +56,7 @@ static int exit_sockets[2];
@@ -15,7 +15,7 @@ index 5c8a11f..c2b2384 100644
  
  #ifndef WIFI_DRIVER_FW_PATH_PARAM
 -#define WIFI_DRIVER_FW_PATH_PARAM	"/sys/module/wlan/parameters/fwpath"
-+#define WIFI_DRIVER_FW_PATH_PARAM		NULL
++#define WIFI_DRIVER_FW_PATH_PARAM	NULL
  #endif
  
  static const char IFACE_DIR[]           = "/data/system/wpa_supplicant";

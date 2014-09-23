@@ -1,0 +1,29 @@
+diff --git a/mbm-ril/u300-ril.c b/mbm-ril/u300-ril.c
+index 05de423..dba3314 100644
+--- a/mbm-ril/u300-ril.c
++++ b/mbm-ril/u300-ril.c
+@@ -983,6 +983,9 @@ static void onATReaderClosed(void)
+ /* Called on command thread. */
+ static void onATTimeout(void)
+ {
++    static int strike = 0;
++    strike++;
++
+     RLOGD("%s() AT channel timeout", __func__);
+ 
+      /* Last resort, throw escape on the line, close the channel
+@@ -995,6 +998,14 @@ static void onATTimeout(void)
+     signalCloseQueues();
+ 
+     /* TODO We may cause a radio reset here. */
++    /* Eperimental reboot of module on HP Touchpad 4G */
++    if (strike == 2) {
++        strike = 0;
++        ALOGW("*** Cold booting module ***");
++        system("echo 0 > /sys/bus/platform/devices/mdmgpio/mdm_poweron");
++        sleep(1);
++        system("echo 1 > /sys/bus/platform/devices/mdmgpio/mdm_poweron");
++    }
+ }
+ 
+ static void usage(char *s)

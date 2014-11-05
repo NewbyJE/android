@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="NewbyJE/android" path="patches" remote="github" revision="cm11-mbm" />
+  <project name="NewbyJE/android" path="patches" remote="github" revision="cm11-mbm_3.0" />
   <project name="NewbyJE/android_kernel_samsung_msm8660-common" path="kernel/hp/tenderloin" remote="github" revision="tenderloin-cm-11.0-wip-5"/>
   <project name="NewbyJE/android_device_hp_tenderloin" path="device/hp/tenderloin" remote="github" revision="cm-11.0_3.0"/>
   <project name="NewbyJE/vendor_mbm" path="vendor/mbm" remote="github" revision="kk"/>

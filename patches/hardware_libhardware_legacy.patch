@@ -1,3 +1,4 @@
+project hardware/libhardware_legacy/
 diff --git a/wifi/wifi.c b/wifi/wifi.c
 index 80a0e2a..da576ea 100644
 --- a/wifi/wifi.c

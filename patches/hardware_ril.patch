@@ -1,3 +1,4 @@
+project hardware/ril/
 diff --git a/rild/Android.mk b/rild/Android.mk
 index 1f616b1..49669cc 100644
 --- a/rild/Android.mk

@@ -1,3 +1,20 @@
-android
-###############################################################################
-Please go to the branch that you wish to setup and build.
+################################################################
+KitKat Version w/ 3.0 kernel (CM11-mbm_3.0)
+Updated to 02 November 2014 Releases
+################################################################
+
+This version incorporates the SourceForge MBM HAL 4.0 BETA.  It
+has been modified specifically for the HP TouchPad 4G which uses
+ the Ericsson f5521gw Mobile Broadband Module (MBM).  
+ 
+ The modifications may be applicable to other platforms using 
+ Ericsson MBMs and running Android JB.  
+
+Acknowledgements
+----------------------------------------------------------------
+  James Sullins:  Everything, Prebuilds for CM10 audio & video,
+    power shutdow, sensors, updated WiFi drivers, etc. 
+  flintman:  assistance with kernel modifications for 4G. 
+  Tomasz Rostanski: Camera HAL, Gyroscope, etc. 
+  Hunter X: Testing and code input.  
+  MBM HAL Developers:  MBM HAL 4.0 Beta

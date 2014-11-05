@@ -1,0 +1,18 @@
+project hardware/qcom/media-caf/
+diff --git a/mm-video/vidc/vdec/src/omx_vdec.cpp b/mm-video/vidc/vdec/src/omx_vdec.cpp
+index 2433aa8..1d6968c 100644
+--- a/mm-video/vidc/vdec/src/omx_vdec.cpp
++++ b/mm-video/vidc/vdec/src/omx_vdec.cpp
+@@ -4348,10 +4348,12 @@ OMX_ERRORTYPE  omx_vdec::get_extension_index(OMX_IN OMX_HANDLETYPE      hComp,
+     else if(!strncmp(paramName,"OMX.google.android.index.getAndroidNativeBufferUsage", sizeof("OMX.google.android.index.getAndroidNativeBufferUsage") - 1)) {
+         *indexType = (OMX_INDEXTYPE)OMX_GoogleAndroidIndexGetAndroidNativeBufferUsage;
+     }
++#if 0
+     else if(!strncmp(paramName,"OMX.google.android.index.prepareForAdaptivePlayback", sizeof("OMX.google.android.index.prepareForAdaptivePlayback") - 1)) {
+         *indexType = (OMX_INDEXTYPE)OMX_GoogleAndroidIndexPrepareForAdaptivePlayback;
+     }
+ #endif
++#endif
+ 	else {
+         DEBUG_PRINT_ERROR("Extension: %s not implemented\n", paramName);
+         return OMX_ErrorNotImplemented;

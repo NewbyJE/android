@@ -1,3 +1,4 @@
+project packages/apps/Email/
 diff --git a/emailcommon/src/com/android/emailcommon/utility/AttachmentUtilities.java b/emailcommon/src/com/android/emailcommon/utility/AttachmentUtilities.java
 index 969e542..80d809d 100644
 --- a/emailcommon/src/com/android/emailcommon/utility/AttachmentUtilities.java

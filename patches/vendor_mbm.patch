@@ -1,3 +1,4 @@
+project vendor/mbm/
 diff --git a/mbm-ril/u300-ril.c b/mbm-ril/u300-ril.c
 index 05de423..dba3314 100644
 --- a/mbm-ril/u300-ril.c

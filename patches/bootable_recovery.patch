@@ -1,9 +1,9 @@
 project bootable/recovery/
 diff --git a/Android.mk b/Android.mk
-index 1d34bda..b9b847b 100644
+index f82c831..32452cb 100644
 --- a/Android.mk
 +++ b/Android.mk
-@@ -109,6 +109,10 @@ ifeq ($(ENABLE_LOKI_RECOVERY),true)
+@@ -103,6 +103,10 @@ ifeq ($(ENABLE_LOKI_RECOVERY),true)
    LOCAL_SRC_FILES += loki/loki_recovery.c
  endif
  

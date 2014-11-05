@@ -1,3 +1,4 @@
+project vendor/cm/
 diff --git a/config/common.mk b/config/common.mk
 index b83b994..f2f68e4 100644
 --- a/config/common.mk

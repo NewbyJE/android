@@ -1,5 +1,6 @@
+project device/hp/tenderloin/
 diff --git a/BoardConfig.mk b/BoardConfig.mk
-index 09e14de..d54da01 100644
+index 66e2976..7a73023 100644
 --- a/BoardConfig.mk
 +++ b/BoardConfig.mk
 @@ -34,14 +34,6 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
@@ -18,10 +19,10 @@ index 09e14de..d54da01 100644
  # Audio
  BOARD_USES_LEGACY_ALSA_AUDIO := true
 diff --git a/device_tenderloin.mk b/device_tenderloin.mk
-index d2939ce..9a5932e 100644
+index 0e860fa..cdc58b7 100644
 --- a/device_tenderloin.mk
 +++ b/device_tenderloin.mk
-@@ -28,8 +28,6 @@ PRODUCT_COPY_FILES += \
+@@ -32,8 +32,6 @@ PRODUCT_COPY_FILES += \
      device/hp/tenderloin/recovery/init.recovery.tenderloin.rc:root/init.recovery.tenderloin.rc \
      device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc \
      device/hp/tenderloin/fstab.tenderloin:root/fstab.tenderloin \
@@ -31,10 +32,10 @@ index d2939ce..9a5932e 100644
      device/hp/tenderloin/prebuilt/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
      device/hp/tenderloin/configs/HPTouchpad.idc:system/usr/idc/HPTouchpad.idc \
 diff --git a/init.tenderloin.rc b/init.tenderloin.rc
-index 08f5c31..40a83a2 100755
+index a505dc6..bec593d 100755
 --- a/init.tenderloin.rc
 +++ b/init.tenderloin.rc
-@@ -225,11 +225,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
+@@ -226,11 +226,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
      disabled
      oneshot
  
@@ -47,7 +48,7 @@ index 08f5c31..40a83a2 100755
      class core
      user root
 diff --git a/overlay/frameworks/base/core/res/res/values/config.xml b/overlay/frameworks/base/core/res/res/values/config.xml
-index 15cbd72..24c4606 100755
+index 79fc283..0e947bf 100755
 --- a/overlay/frameworks/base/core/res/res/values/config.xml
 +++ b/overlay/frameworks/base/core/res/res/values/config.xml
 @@ -60,42 +60,26 @@
